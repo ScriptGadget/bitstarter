@@ -24,8 +24,31 @@ References:
 var fs = require('fs');
 var program = require('commander');
 var cheerio = require('cheerio');
+var rest = require('restler');
+var util = require('util');
 var HTMLFILE_DEFAULT = "index.html";
 var CHECKSFILE_DEFAULT = "checks.json";
+var TMPFILE_DEFAULT = "spoo6841.html";
+
+var assertURLExists = function(url) {
+    return url;
+};
+
+var buildfn = function(tmpName, checks) {
+    var checkURL = function(result, response) {
+        if (result instanceof Error) {
+            console.error('Error: ' + util.format(result.message));
+        } else {
+            fs.writeFileSync(tmpName, result);
+	    var checkJson = checkHtmlFile(tmpName, checks);
+	    var outJson = JSON.stringify(checkJson, null, 4);
+	    console.log(outJson);
+	    fs.unlinkSync(tmpName);
+        }
+    };
+    return checkURL;
+};
+
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
@@ -65,10 +88,16 @@ if(require.main == module) {
     program
 	.option('-c, --checks <check_file>', 'Path to checks.json', clone(assertFileExists), CHECKSFILE_DEFAULT)
 	.option('-f, --file <html_file>', 'Path to index.html', clone(assertFileExists), HTMLFILE_DEFAULT)
+	.option('-u, --url <URL>', 'URL of page to grade', clone(assertURLExists), null)
 	.parse(process.argv);
-    var checkJson = checkHtmlFile(program.file, program.checks);
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
+    if (program.url != null) {
+	checkURL = buildfn(TMPFILE_DEFAULT, program.checks);
+	rest.get(program.url).on('complete', checkURL);
+    } else {
+	var checkJson = checkHtmlFile(program.file, program.checks);
+	var outJson = JSON.stringify(checkJson, null, 4);
+	console.log(outJson);
+    }
 } else {
     exports.checkHtmlFile = checkHtmlFile;
 }
