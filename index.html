@@ -2,13 +2,18 @@
 <html lang="en">
   <head>
     <meta charset ="utf-8">
-    <title>Bright Canopy</title>
+    <title>BRIGHT CANOPY - The Stars Are Right</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-combined.no-icons.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css">
     <link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+    <!--[if lte IE 8]>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+    <![endif]-->
     <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
     <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
     <style  type="text/css">
@@ -104,9 +109,22 @@
         width:112px;
         margin: 0 auto;
       }
+
+      ul {
+        list-style: none;
+      }
+
+      .quip {
+        color: gray;
+      }
+
+      #where {
+        height: 280px;
+      }
+
     </style>
 
-    <script type="text/javascript">
+    <Script type="text/javascript">
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-42879556-1']);
@@ -133,7 +151,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Bright Canopy</a>
+          <a class="brand" href="#">BRIGHT CANOPY</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -154,14 +172,14 @@
       <!-- www.google.com/fonts/specimen/Ubuntu#pairings -->
       <div class="row-fluid heading">
         <div class="span12">
-          <h1>Bright Canopy</h1>
+          <h1>BRIGHT CANOPY</h1>
         </div>
       </div> 
       <div class="row-fluid subheading">
         <div class="span12">
           <!-- Special typography from Bootstrap for lead paragraph. -->
           <!-- http://twitter.github.io/bootstrap/base-css.html#typography -->
-          <p class="lead">Street fair and festival communications, planning and management, so you can focus on fun.</p>
+          <p class="lead">Be one of the first to build, explore and share a new world.</p>
         </div>
       </div>
       <div class="row-fluid pitch">
@@ -232,44 +250,51 @@
       <!-- http://placehold.it -->
       <div class="row-fluid section1">
         <div class="span5 offset1 asset">
-          <img class="img-polaroid" src="http://placehold.it/480x300">
+           <img class="img-polaroid" src="http://placehold.it/480x300">
         </div>
         <div class="span5 copy">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            porta, dui sagittis hendrerit rutrum, nunc leo tempus nisl, eu
-            mollis justo velit at nunc. Fusce nec egestas sem. Donec
-            fringilla ante lectus, a pellentesque lacus dignissim ac. Sed
-            volutpat lorem ut congue malesuada. In facilisis scelerisque
-            turpis sed lacinia. Donec in orci lectus. Donec auctor semper
-            quam, eget rhoncus purus fringilla id. Phasellus id nibh eu
-            risus ultrices adipiscing.  Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Donec porta, dui sagittis hendrerit
-            rutrum, nunc leo tempus nisl, eu mollis justo velit at
-            nunc. Fusce nec egestas sem. Donec fringilla.
-          </p>
+	  <p><a name="about"><strong>Pioneers Wanted</strong></a></p>
+	  <p>If you could build anything, what would it be?</p>
+
+	  <p>If you could own any piece of land on the planet, where would it be?</p>
+
+	  <p>We need pioneers, artists, entrepreneurs and mad geniuses.</p>
+
+          <p>The BRIGHT CANOPY project is building a new world right next to the one you know, and you can help make it the world of your dreams.</p> 
+
         </div>
       </div>
 
       <div class="row-fluid section2">
         <div class="span5 offset1 copy copy-right">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            porta, dui sagittis hendrerit rutrum, nunc leo tempus nisl, eu
-            mollis justo velit at nunc. Fusce nec egestas sem. Donec
-            fringilla ante lectus, a pellentesque lacus dignissim ac. Sed
-            volutpat lorem ut congue malesuada. In facilisis scelerisque
-            turpis sed lacinia. Donec in orci lectus. Donec auctor semper
-            quam, eget rhoncus purus fringilla id. Phasellus id nibh eu
-            risus ultrices adipiscing.  Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Donec porta, dui sagittis hendrerit
-            rutrum, nunc leo tempus nisl, eu mollis justo velit at
-            nunc. Fusce nec egestas sem. Donec fringilla.
-          </p>
+	  <p>Own, buy and sell land.<ul><li class="quip">Buy Idaho and found a kingdom!</li></ul></p>
+	  <p>Create three dimensional objects.<ul><li class="quip">Make things, open a store or a whole chain of stores.. sell franchises.</li></ul> </p>
+	  <p>Script machines to interact with others.<ul><li class="quip">Build a phantom amusement park in Antarctica.</li></ul></p>
+	  <p>Create creatures and pets. <ul><li class="quip">You know you always wanted a flying, phantom horse-duck.</li></ul></p>
+	  <p>Do things no one ever dreamed of.<ul><li class="quip">Because that's what it's REALLY all about</ul></li></p>
+	  </ul>
         </div>
         <div class="span5 asset">
           <img class="img-polaroid" src="http://placehold.it/480x300">
         </div>
+      </div>
+
+      <div class="row-fluid section3">
+	<div class="span5 offset1 asset">
+	  <h2>Contact Us</h2>
+	  <a name="contact"><div id="where"></div></a>
+	</div>
+
+        <div class="span5 copy copy-right">
+	  <h2>What you can do</h2>
+
+	  <p><strong>1a.</strong> Donate to support the project.</p>
+	  <p><strong>1b.</strong> Or, buy land and stake your claim.</p>
+	  <p><strong>2.</strong> Give your parcel a name and description and an optional web link.</p>
+	  <p><strong>3.</strong> Fire up your imagination.</p>
+	  <p><strong>4.</strong> <a href="mailto:contact@brightcanopy.com">Get involved</a> and help build a new world.</p>
+	</div>
+	
       </div>
 
       <!-- For the FAQ, we introduce a little bit of JS, using the accordion. -->
@@ -279,49 +304,193 @@
           <div class="span10 offset1">
             <h3>FAQ</h3>
             <div class="accordion" id="accordion2">
+  
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
                      data-parent="#accordion2" href="#collapseOne">
-                    What does FAQ stand for?
+                    Who are you people?
                   </a>
                 </div>
                 <div id="collapseOne" class="accordion-body collapse">
                   <div class="accordion-inner">
-                    Frequently Asked Question.
+
+                    <p>The BRIGHT CANOPY project is
+                    a <a href="http://theleanstartup.com/"
+                    target="_new">lean startup</a> in Grass Valley,
+                    California launched as part of the Stanford,
+                    Startup Engineering project driven
+                    by <a href="https://www.coursera.org/instructor/balajis"
+                    target="_new">Balaji S. Srinivasan</a>
+                    and <a href="https://www.coursera.org/instructor/vijaypande"
+                    target="_new">Vijay S. Pande</a>. Mr Srinivasan
+                    and Mr. Pande are not otherwise involved with
+                    BRIGHT CANOPY.  Our founder
+                    is <a href="http://www.linkedin.com/in/billglover"
+                    target="_new">Bill Glover</a> who has been around
+                    the block a time or two and is a Virtual World
+                    native.</p>
                   </div>
                 </div>
               </div>
+
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
                      data-parent="#accordion2" href="#collapseTwo">
-                    What's a Frequently Asked Question?
+                    What will this money be used for?
                   </a>
                 </div>
                 <div id="collapseTwo" class="accordion-body collapse">
                   <div class="accordion-inner">
-                    A question which is commonly asked by users.
+
+		    <p>The money from this starter will be used to pay
+		    for the servers, licenses and development time it
+		    will take to build out the rest of the
+		    features. </p>
+
                   </div>
                 </div>
               </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseThree">
+                    What do I get when I buy land?
+                  </a>
+                </div>
+                <div id="collapseThree" class="accordion-body collapse">
+                  <div class="accordion-inner">
+
+                    <p>This is a starter to get things rolling. It's a
+                    chance for pioneering folks and would-be land
+                    barrons to grab land early before anyone else
+                    hears about us. Your early support earns you an
+                    advantage in price and choice. We will be strictly
+                    first-come, first-serve. Each land purchase will
+                    be recorded and appear on <a href="#map">The Big
+                    Map</a> as well as the BRIGHT CANOPY channel in
+                    the <a href="http://www.junaio.com/"
+                    target="_new">Junaio Augmented Reality</a>
+                    browser. You will be able to walk around and see
+                    your marker and those of others nearby floating in
+                    space. You will be able to name your land and set
+                    the description as well as an optional web
+                    link. Once we rollout user created content, land
+                    owners will be able to set permissions on who can
+                    create content (3D objects, flying monkeys,
+                    rotating billboards with spotlights and blink tags
+                    etc..) on your land. Once we rollout the land
+                    market, land owners will be able to buy and sell
+                    land.</p>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseFour">
+                    Who owns the content I create in the canopy?
+                  </a>
+                </div>
+                <div id="collapseFour" class="accordion-body collapse">
+                  <div class="accordion-inner">
+
+                    <p>Creators retain all rights to the objects they
+                    create. We will only ask you for the rights we
+                    will need to display your objects and allow others
+                    to interact with them when you place them out to
+                    share with others. You will have the ability to
+                    sell copies of your items and control (as much as
+                    is <a href="https://www.eff.org/issues/drm">technically feasible</a>) the ability of others
+                    to make copies within the canopy.</p>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseFive">
+                    Why Bitcoin?
+                  </a>
+                </div>
+                <div id="collapseFive" class="accordion-body collapse">
+                  <div class="accordion-inner">
+
+                    <p>Bitcoin is an international currency with quite
+                    a few properties that make it perfect for use in
+                    an virtual world. For a great overview
+                    see <a href="http://www.coindesk.com/information/"
+                    target="_new">A Beginner's Guide to
+                    Bitcoin</a>.</p>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseSix">
+                    Why ALL THE CAPS?
+                  </a>
+                </div>
+                <div id="collapseSix" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <p>BRIGHT CANOPY is not related to <a href="http://thelaundryfiles.wikia.com/wiki/Case_Nightmare_Green" target="_new">CASE NIGHTMARE GREEN</a>. Any eldritch horrors you may encounter in the canopy are entirely your own fault.</p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
       </div>
 
-      <!-- Not crucial, but we put this under a CC By-SA 3.0 license. -->
+      <!-- Not crucial, but we put this under a CC By-SA 3.0 license in case some of this code is useful to someone. -->
       <!-- http://creativecommons.org/licenses/ -->
       <div class="row-fluid footer">
         <div class="span12">
           <p>This work is licensed under
             the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC
-              By-SA 3.0
-            </a>, without all the cruft that would otherwise be
-            put at the bottom of the page.</p>
+              By-SA 3.05~
+            </a>, originally based on a template by Balaji S. Srinivasan and Vijay S. Pande, Stanford University.</p>
         </div>
       </div>
     </div>
+
+    <!-- The "Where Are We" map -->
+    <script>
+		var map = L.map('where').setView([39.232735, -121.037922], 13);
+
+		L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+		}).addTo(map);
+
+
+		L.marker([39.232735, -121.037922]).addTo(map)
+			.bindPopup("<b>PROJECT BRIGHT CANOPY</b><br /><a href='mailto:contact@brightcanopy.com'>contact@brightcanopy.com</a><br />578 Sutton Way, PMB 134<br />Grass Valley, CA<br />95945").openPopup();
+
+
+		L.polygon([
+			[39.230, -121.030],
+			[39.230, -121.044],
+			[39.239, -121.044],
+			[39.239, -121.030]
+		]).addTo(map).bindPopup("Bright Canopy HQ!");
+
+
+		var popup = L.popup();
+
+		map.on('click', onMapClick);
+
+    </script>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
