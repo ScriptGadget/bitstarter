@@ -122,6 +122,11 @@
         height: 280px;
       }
 
+      .brand img {
+        height: 25px;
+        width: 40px;
+      }
+
     </style>
 
     <Script type="text/javascript">
@@ -151,12 +156,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">BRIGHT CANOPY</a>
+          <a class="brand" href="#"><img src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/images/noun_project_16390-whitestar.svg"/>Bright Canopy</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
+              <li><a href="#faq">FAQ</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -179,12 +185,11 @@
         <div class="span12">
           <!-- Special typography from Bootstrap for lead paragraph. -->
           <!-- http://twitter.github.io/bootstrap/base-css.html#typography -->
-          <p class="lead">Be one of the first to build, explore and share a new world.</p>
+          <p class="lead">Build a new world.</p>
         </div>
       </div>
       <div class="row-fluid pitch">
         <div class="span5 offset1 video">
-          <!-- <img class="img-polaroid" src="http://placehold.it/480x300"> -->
 	  <iframe id="ytplayer" type="text/html" width="100%" height="300px"
 		  src="https://www.youtube.com/embed/Q1zbgd6xpGQ?controls=0&showinfo=0"
 		  frameborder="0" allowfullscreen></iframe>
@@ -230,12 +235,9 @@
             <!-- See: http://noizwaves.github.io/bootstrap-social-buttons -->
 	    <!-- AddThis Button BEGIN -->
 	    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-	      <a class="addthis_button_preferred_1"></a>
-	      <a class="addthis_button_preferred_2"></a>
-	      <a class="addthis_button_compact"></a>
-	      <!--
-	      <a class="addthis_counter addthis_bubble_style"></a>
-	      -->
+	      <a class="addthis_button_twitter"></a>
+	      <a class="addthis_button_google_plusone_share"></a>
+	      <a class="addthis_button_facebook"></a>
 	    </div>
 	    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
 	    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5208190b367a7f73"></script>
@@ -250,17 +252,19 @@
       <!-- http://placehold.it -->
       <div class="row-fluid section1">
         <div class="span5 offset1 asset">
-           <img class="img-polaroid" src="http://placehold.it/480x300">
+           <img class="img-polaroid" src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/images/ant_nebula_Menzel_3-480x300.jpg">
         </div>
         <div class="span5 copy">
 	  <p><a name="about"><strong>Pioneers Wanted</strong></a></p>
 	  <p>If you could build anything, what would it be?</p>
 
-	  <p>If you could own any piece of land on the planet, where would it be?</p>
-
 	  <p>We need pioneers, artists, entrepreneurs and mad geniuses.</p>
 
-          <p>The BRIGHT CANOPY project is building a new world right next to the one you know, and you can help make it the world of your dreams.</p> 
+          <p>
+	    The BRIGHT CANOPY project is building a new world right
+            next to the one you know, and you can help make it into the
+            world of your dreams.
+	  </p>
 
         </div>
       </div>
@@ -268,72 +272,44 @@
       <div class="row-fluid section2">
         <div class="span5 offset1 copy copy-right">
 	  <p>Own, buy and sell land.<ul><li class="quip">Buy Idaho and found a kingdom!</li></ul></p>
-	  <p>Create three dimensional objects.<ul><li class="quip">Make things, open a store or a whole chain of stores.. sell franchises.</li></ul> </p>
+	  <p>Create and sell virtual objects.<ul><li class="quip">Make things, open a store or a whole chain of stores. Sell franchises.</li></ul> </p>
 	  <p>Script machines to interact with others.<ul><li class="quip">Build a phantom amusement park in Antarctica.</li></ul></p>
 	  <p>Create creatures and pets. <ul><li class="quip">You know you always wanted a flying, phantom horse-duck.</li></ul></p>
 	  <p>Do things no one ever dreamed of.<ul><li class="quip">Because that's what it's REALLY all about</ul></li></p>
 	  </ul>
         </div>
         <div class="span5 asset">
-          <img class="img-polaroid" src="http://placehold.it/480x300">
+	  <a name="contact"><div id="where"></div></a>
         </div>
       </div>
 
       <div class="row-fluid section3">
-	<div class="span5 offset1 asset">
+	<div class="span5 offset1 copy copy-right">
 	  <h2>Contact Us</h2>
-	  <a name="contact"><div id="where"></div></a>
+	  <dl>
+	    <dt class="icon-envelope"> email</dt> <dd><a href="mailto:contact@brightcanopy.com">contact@brightcanopy.com</a></dd>
+	    <dt class="icon-twitter"> twitter</dt> <dd><a href="https://twitter.com/BrightCanopyApp">@BrightCanopyApp</a></dd>
+	    <dt class="icon-facebook"> facebook</dt> <dd><a href="https://www.facebook.com/BrightCanopy">BrightCanopy</a></dd>
+	    <dt class="icon-map-marker"> post</dt> <dd>578 Sutton Way, PMB 134, Grass Valley, CA 95945</dd>
+	  </dl>
 	</div>
 
         <div class="span5 copy copy-right">
-	  <h2>What you can do</h2>
-
-	  <p><strong>1a.</strong> Donate to support the project.</p>
-	  <p><strong>1b.</strong> Or, buy land and stake your claim.</p>
-	  <p><strong>2.</strong> Give your parcel a name and description and an optional web link.</p>
-	  <p><strong>3.</strong> Fire up your imagination.</p>
-	  <p><strong>4.</strong> <a href="mailto:contact@brightcanopy.com">Get involved</a> and help build a new world.</p>
+	  <h2>What You Can Do</h2>
+	  <p><strong>1.</strong> Buy land and stake your claim.</p>
+	  <p><strong>2.</strong> Give your parcel a name, a description and an optional web link.</p>
+	  <p><strong>3.</strong> <a href="mailto:contact@brightcanopy.com">Get involved</a> and help build a new world.</p>
 	</div>
 	
       </div>
-
       <!-- For the FAQ, we introduce a little bit of JS, using the accordion. -->
       <!-- This brings in jquery.js and bootstrap.js as dependencies. -->
       <!-- http://twitter.github.io/bootstrap/javascript.html#collapse -->
       <div class="row-fluid faq">
           <div class="span10 offset1">
-            <h3>FAQ</h3>
+            <h3><a name="faq">FAQ</a></h3>
             <div class="accordion" id="accordion2">
   
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse"
-                     data-parent="#accordion2" href="#collapseOne">
-                    Who are you people?
-                  </a>
-                </div>
-                <div id="collapseOne" class="accordion-body collapse">
-                  <div class="accordion-inner">
-
-                    <p>The BRIGHT CANOPY project is
-                    a <a href="http://theleanstartup.com/"
-                    target="_new">lean startup</a> in Grass Valley,
-                    California launched as part of the Stanford,
-                    Startup Engineering project driven
-                    by <a href="https://www.coursera.org/instructor/balajis"
-                    target="_new">Balaji S. Srinivasan</a>
-                    and <a href="https://www.coursera.org/instructor/vijaypande"
-                    target="_new">Vijay S. Pande</a>. Mr Srinivasan
-                    and Mr. Pande are not otherwise involved with
-                    BRIGHT CANOPY.  Our founder
-                    is <a href="http://www.linkedin.com/in/billglover"
-                    target="_new">Bill Glover</a> who has been around
-                    the block a time or two and is a Virtual World
-                    native.</p>
-                  </div>
-                </div>
-              </div>
-
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
@@ -362,29 +338,38 @@
                 </div>
                 <div id="collapseThree" class="accordion-body collapse">
                   <div class="accordion-inner">
-
-                    <p>This is a starter to get things rolling. It's a
-                    chance for pioneering folks and would-be land
-                    barrons to grab land early before anyone else
-                    hears about us. Your early support earns you an
-                    advantage in price and choice. We will be strictly
-                    first-come, first-serve. Each land purchase will
-                    be recorded and appear on <a href="#map">The Big
-                    Map</a> as well as the BRIGHT CANOPY channel in
-                    the <a href="http://www.junaio.com/"
-                    target="_new">Junaio Augmented Reality</a>
-                    browser. You will be able to walk around and see
-                    your marker and those of others nearby floating in
-                    space. You will be able to name your land and set
-                    the description as well as an optional web
-                    link. Once we rollout user created content, land
-                    owners will be able to set permissions on who can
-                    create content (3D objects, flying monkeys,
-                    rotating billboards with spotlights and blink tags
-                    etc..) on your land. Once we rollout the land
-                    market, land owners will be able to buy and sell
-                    land.</p>
-
+                    <p>
+		      This is a starter to get things rolling. It's a
+                      chance for pioneering folks and would-be land
+                      barrons to grab land early before anyone else
+                      hears about us. Your early support earns you an
+                      advantage in price and choice. We will be strictly
+                      first-come, first-serve.
+		    </p>
+		    <p>
+		      Each land purchase will be recorded and appear
+                      on <a href="#map">The Big Map</a> as well as the
+                      BRIGHT CANOPY channel in
+                      the <a href="http://www.junaio.com/"
+                      target="_new">Junaio Augmented Reality</a>
+                      browser. You will be able to walk around and see
+                      your marker and those of others nearby floating
+                      in space. You will be able to name your land and
+                      set the description as well as an optional web
+                      link.
+		    </p>
+		    <p>
+		      Once we rollout user created content, land
+                      owners will be able to set permissions on who
+                      can create content (3D objects, flying monkeys,
+                      rotating billboards with spotlights and blink
+                      tags etc..) on your land.
+		    </p>
+		    <p>
+		      Once we rollout the
+		      land market, land owners will be able to buy and
+		      sell land.
+		    </p>
                   </div>
                 </div>
               </div>
@@ -399,15 +384,91 @@
                 <div id="collapseFour" class="accordion-body collapse">
                   <div class="accordion-inner">
 
-                    <p>Creators retain all rights to the objects they
-                    create. We will only ask you for the rights we
-                    will need to display your objects and allow others
-                    to interact with them when you place them out to
-                    share with others. You will have the ability to
-                    sell copies of your items and control (as much as
-                    is <a href="https://www.eff.org/issues/drm">technically feasible</a>) the ability of others
-                    to make copies within the canopy.</p>
+                    <p>
+		      Creators retain all rights to the objects they
+                      create. We will only ask for the minimum rights
+                      necessary to do what you want us to do with your
+                      objects. You will have the ability to sell copies
+                      of your items and control (as much as
+                      is <a href="https://www.eff.org/issues/drm">technically
+			feasible</a>) the ability of others to make copies
+                      within the canopy.
+		    </p>
 
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseRisks">
+                    What are the risks and challenges?
+                  </a>
+                </div>
+                <div id="collapseRisks" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <p>
+		      Augmented Reality is a fast developing field
+		      again. The hardware and infrastructure is just
+		      starting to catch up with our childhood
+		      expectations, but it is catching up and most of
+		      the things we want to do have already been
+		      built, debugged and packaged into a nice, neat
+		      SDK or cloud API.
+		    </p>
+		    <p>
+		      What we Know: We know we can do Augmented
+		      Reality with 3D, scriptable objects.  We know we
+		      can do user created content.  We know we can
+		      build land auctions, vending machines and
+		      virtual stores based on bitcoin. It's just work
+		      and time and money.
+		    </p>
+		    <p>
+		      What We Don't Know: We don't know if you will be
+		      excited enough about this idea to get out there
+		      and invite your friends to help build a new
+		      world. If you are, we can do anything.
+		    </p>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseOne">
+                    Who are you people?
+                  </a>
+                </div>
+                <div id="collapseOne" class="accordion-body collapse">
+                  <div class="accordion-inner">
+
+                    <p>The BRIGHT CANOPY project is
+                      a <a href="http://theleanstartup.com/"
+			   target="_new">lean startup</a> in Grass Valley,
+                      California launched as part of the Stanford,
+                      Startup Engineering project.
+		    </p>
+		    <p>
+		      Startup Engineering is a class taught
+		      by <a href="https://www.coursera.org/instructor/balajis"
+		      target="_new">Balaji S. Srinivasan</a>
+		      and <a href="https://www.coursera.org/instructor/vijaypande"
+		      target="_new">Vijay S. Pande</a>. This project
+		      is a direct result of their inspiration and
+		      encouragement. Mr. Srinivasan and Mr. Pande are
+		      not otherwise involved with BRIGHT CANOPY. (If
+		      we screw-up it's not their fault, they've given
+		      great direction).
+		    </p>
+		    <p>Our founder is Bill Glover who has been <a href="http://www.linkedin.com/in/billglover"
+					 target="_new">around
+			the block a time or two</a> and is a Virtual World
+                      native.
+		    </p>
                   </div>
                 </div>
               </div>
@@ -422,12 +483,14 @@
                 <div id="collapseFive" class="accordion-body collapse">
                   <div class="accordion-inner">
 
-                    <p>Bitcoin is an international currency with quite
-                    a few properties that make it perfect for use in
-                    an virtual world. For a great overview
-                    see <a href="http://www.coindesk.com/information/"
-                    target="_new">A Beginner's Guide to
-                    Bitcoin</a>.</p>
+                    <p>
+		      Bitcoin is an international currency with
+                      properties that make it work well for a startup
+                      and especially well for a virtual world virtual
+                      world. For a great overview
+                      see <a href="http://www.coindesk.com/information/"
+                      target="_new">A Beginner's Guide to Bitcoin</a>.
+		    </p>
 
                   </div>
                 </div>
@@ -436,13 +499,71 @@
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
-                     data-parent="#accordion2" href="#collapseSix">
+                     data-parent="#accordion2" href="#collapseJunaio">
+                    So it's a Junaio channel?
+                  </a>
+                </div>
+                <div id="collapseJunaio" class="accordion-body collapse">
+                  <div class="accordion-inner">
+		    <p>
+		      Junaio has some nice features, but it's just a
+		      good place to start for now. It doesn't have all
+		      of the features we will eventually need, so we
+		      expect to move on to a custom application before
+		      long. The idea is to learn as quickly as
+		      possibly, what you, the creator, resident or
+		      explorer really want and build just that without
+		      alot of cruft and waste.
+		    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseSL">
+                    So it's Second Life?
+                  </a>
+                </div>
+                <div id="collapseSL" class="accordion-body collapse">
+                  <div class="accordion-inner">
+		    <p>
+		      Second Life is an amazing thing and Linden Labs
+		      and Phillip Rosedale really blazed a trail for
+		      the rest of us, but it's a virtual world off in
+		      its own virtual space somewhere.
+		    </p>
+		    <p>
+		      BRIGHT CANOPY is an augmented reality layer over
+		      the world you already know. You can build a copy
+		      of the Parthenon in SL with a guided tour and
+		      even build a souvenier stand to sell scale
+		      models (even full size), but in the canopy, you
+		      can do all of that at the actual Parthenon.
+		      Even better you can do all of that in your own
+		      travel agency office in Topeka, KS.
+		    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse"
+                     data-parent="#accordion2" href="#collapseCaps">
                     Why ALL THE CAPS?
                   </a>
                 </div>
-                <div id="collapseSix" class="accordion-body collapse">
+                <div id="collapseCaps" class="accordion-body collapse">
                   <div class="accordion-inner">
-                    <p>BRIGHT CANOPY is not related to <a href="http://thelaundryfiles.wikia.com/wiki/Case_Nightmare_Green" target="_new">CASE NIGHTMARE GREEN</a>. Any eldritch horrors you may encounter in the canopy are entirely your own fault.</p>
+                    <p>
+		      BRIGHT CANOPY is not related
+		      to <a href="http://thelaundryfiles.wikia.com/wiki/Case_Nightmare_Green"
+		      target="_new">CASE NIGHTMARE GREEN</a>. Any
+		      eldritch horrors you may encounter in the canopy
+		      are entirely your own fault.
+		    </p>
                   </div>
                 </div>
               </div>
@@ -475,16 +596,7 @@
 
 
 		L.marker([39.232735, -121.037922]).addTo(map)
-			.bindPopup("<b>PROJECT BRIGHT CANOPY</b><br /><a href='mailto:contact@brightcanopy.com'>contact@brightcanopy.com</a><br />578 Sutton Way, PMB 134<br />Grass Valley, CA<br />95945").openPopup();
-
-
-		L.polygon([
-			[39.230, -121.030],
-			[39.230, -121.044],
-			[39.239, -121.044],
-			[39.239, -121.030]
-		]).addTo(map).bindPopup("Bright Canopy HQ!");
-
+			.bindPopup('<img src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/images/noun_project_16390-whitestar.svg" height="25px" width="25px"><br /><b>Miskatonic Alumni Association</b><br /><a href="#">brightcanopy.com</a><br />Headquarters of the Miskatonic Alumni Association<br />Semper <i>scientia, aere perennius</i><br />').openPopup();
 
 		var popup = L.popup();
 
