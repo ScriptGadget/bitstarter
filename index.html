@@ -16,6 +16,7 @@
     <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <script src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/js/jquery.form.min.js"></script>
     <style  type="text/css">
 
       /* Large desktop */
@@ -334,7 +335,7 @@
 
       <div class="row-fluid section4">
         <div class="span10 offset1">
-	  <form class="form-horizontal" id="claim">
+	  <form class="form-horizontal" id="claim_form" action="/claim" method="post">
 	    <fieldset>
 
 	      <!-- Form Name -->
@@ -372,10 +373,10 @@
 		<label class="control-label" for="size">Square Meters</label>
 		<div class="controls">
 		  <select id="size" name="size" class="input-xlarge">
-		    <option>9 - King of Your Cubicle</option>
-		    <option>25 - Trailblazer</option>
-		    <option>100 - Pioneer</option>
-		    <option>1000 - Land Baron</option>
+		    <option value="9">9 - King of Your Cubicle</option>
+		    <option value="25">25 - Trailblazer</option>
+		    <option value="100">100 - Pioneer</option>
+		    <option value="1000">1000 - Land Baron</option>
 		  </select>
 		  <p class="help-block">Early backer price is 0.01 bitcoins per square meter.</p>
 		</div>
@@ -399,9 +400,9 @@
 
 	      <!-- Button -->
 	      <div class="control-group">
-		<label class="control-label" for="claim"></label>
+		<label class="control-label" for="claim_button"></label>
 		<div class="controls">
-		  <button id="claim" name="claim" class="btn btn-primary">Stake My Claim</button>
+		  <button id="claim_button" name="claim" class="btn btn-primary">Stake My Claim</button>
 		</div>
 	      </div>
 
@@ -421,7 +422,7 @@
 
       <div class="row-fluid section6">
         <div class="span10 offset1">
-	  <form class="form-horizontal">
+	  <form id="donate_form" class="form-horizontal" action="/donate" method="post">
 	    <fieldset>
 
 	      <!-- Form Name -->
@@ -447,9 +448,9 @@
 
 	      <!-- Button -->
 	      <div class="control-group">
-		<label class="control-label" for="donate"></label>
+		<label class="control-label" for="donate_button"></label>
 		<div class="controls">
-		  <button id="donate" name="donate" class="btn btn-primary">Donate With Bitcoin</button>
+		  <button id="donate_button" name="donate" class="btn btn-primary">Donate With Bitcoin</button>
 		</div>
 	      </div>
 
@@ -765,6 +766,19 @@
 
     <!-- Form Handlers -->
     <script>
+        $(document).ready(function() { 
+            $('#claim_form').ajaxForm({
+	        success: function(data) {
+	                 console.log(data);
+                         } 
+                });
+
+            $('#donate_form').ajaxForm({
+	        success: function(data) {
+	                 console.log(data);
+                         } 
+                });
+        });
     </script>
 
     <script>
