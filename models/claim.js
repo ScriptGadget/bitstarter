@@ -7,7 +7,7 @@ maps to the JS Order object.
 */
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define("Claim", {
-    email: {type: DataTypes.STRING, unique: true, allowNull: false},
+    email: {type: DataTypes.STRING, allowNull: false},
     latitude: {type: DataTypes.FLOAT},
     longitude: {type: DataTypes.FLOAT},
     size: {type: DataTypes.INTEGER},

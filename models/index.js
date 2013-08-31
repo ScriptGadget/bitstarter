@@ -47,7 +47,6 @@ if (!global.hasOwnProperty('db')) {
         Sequelize: Sequelize,
         sequelize: sq,
         Order: sq.import(__dirname + '/order'),
-        Donation: sq.import(__dirname + '/donation'),
         Claim: sq.import(__dirname + '/claim')
     };
 }

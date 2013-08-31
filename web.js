@@ -112,56 +112,29 @@ var addOrder = function(order_obj, callback) {
   }
 };
 
-// Accept a Donation
-app.post('/donate', function(request, response) {
-    try {
-	var Donation = global.db.Donation;
-	var new_donation = Donation.build({
-	    email: request.body.email,
-	    amount: request.body.amount,
-	});
-
-	new_donation.save().success(function() {
-	    response.send("Thank You: " + new_donation.id);
-	}).error(function(error) {
-	    response.send("Error adding donation: " + error);
-	});
-    } catch (error) {
-	console.log(error);
-	response.send("Error adding donation: " + error);
-    }
-});
-
 // Register a claim
 app.post('/claim', function(request, response) {
     try {
-	var Claim = global.db.Claim;
-	var new_claim = Claim.build({
+	global.db.Claim.create({
 	    email: request.body.email,
 	    latitude: request.body.latitude,
 	    longitude: request.body.longitude,
 	    size: request.body.size,
 	    name: request.body.name,
 	    description: request.body.description,
-	});
-
-	new_claim.save().success(function() {
-	    response.send("Thank You");
+	}).success(function(claim) {
+	    response.send(JSON.stringify([{
+		message: "Thank You",
+		id: claim.id,
+		size: claim.size,
+		longitude: claim.longitude,
+		latitude: claim.latitude}]));
 	}).error(function(error) {
 	    console.log(error);
-	    response.send("Error adding claim.");
+	    response.send(JSON.stringify([{error: "Error adding claim: " + error}]));
 	});
     } catch (error) {
 	console.log(error);
-	response.send("Error adding claim.");
+	response.send(JSON.stringify([{error: "Error adding claim: " + error}]));
     }
 });
-
-
-// app.post('/clear', function(request, response) {
-//     try {
-// 	var Claim = global.db.Claim;
-// 	var Donation = global.db.Donation;
-//     } catch (error) {
-//     }
-// });
