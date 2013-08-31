@@ -11,7 +11,7 @@
     <!--[if lte IE 8]>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
     <![endif]-->
-    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
@@ -232,17 +232,17 @@
                 different in horizontal and vertical layouts, illustrating
                 media queries. -->
                 <div class="linediv-l">
-                <h3>0</h3> <p>backers</p>
+                <h3><span id="backer_count">0</span></h3> <p>backers</p>
                 </div>
               </div>
               <div class="span4">
                 <div class="linediv-c">
-                  <h3>$0</h3> <p>of $100,000</p>
+                  <h3><span id="btc_raised">0</span> BTC</h3> <p>of 20BTC</p>
                 </div>
               </div>
               <div class="span4">
                 <div class="linediv-r">
-                <h3>30</h3> <p>days left</p>
+                <h3>10</h3> <p>days left</p>
                 </div>
               </div>
             </div>
@@ -326,8 +326,8 @@
 
         <div class="span5 copy copy-right">
 	  <h2>What You Can Do</h2>
-	  <p><strong>1.</strong> Buy canopy and stake your claim.</p>
-	  <p><strong>2.</strong> Give your parcel a name, a description and an optional web link.</p>
+	  <p><strong>1.</strong> Buy a piece of the canopy and stake your claim.</p>
+	  <p><strong>2.</strong> Give your parcel a name, and a description.</p>
 	  <p><strong>3.</strong> <a href="mailto:contact@brightcanopy.com">Get involved</a> and help build a new world.</p>
 	</div>
 	
@@ -347,7 +347,7 @@
 		<label class="control-label" for="email">Email</label>
 		<div class="controls">
 		  <input id="email" name="email" type="text" placeholder="me@example.com" class="input-xlarge" required="">
-		  <p class="help-block">We will use your email to contact you about your canopy parcel and to verify your ownership. We promise not to share or sell your information.</p>
+		  <p class="help-block">We will use your email to contact you about your canopy claim and to verify your ownership. We promise not to share or sell your information.</p>
 		</div>
 	      </div>
 
@@ -445,7 +445,7 @@
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
                      data-parent="#accordion2" href="#collapseThree">
-                    What do I get when I buy canopy?
+                    What do I get when I buy a piece of canopy?
                   </a>
                 </div>
                 <div id="collapseThree" class="accordion-body collapse">
@@ -464,7 +464,7 @@
                       BRIGHT CANOPY channel in
                       the <a href="http://www.junaio.com/"
                       target="_new">Junaio Augmented Reality</a>
-                      browser. You will be able to walk around and see
+                      browser (live in a few days). You will be able to walk around and see
                       your marker and those of others nearby floating
                       in space. You will be able to name your canopy and
                       set the description as well as an optional web
@@ -714,19 +714,13 @@
 
     <!-- Form Handlers -->
     <script>
-        function setupMap(map, latitude, longitude, name, description, url) {
-	  url = url || "";
+        function setupMap() {
+            var map = L.map('where').setView([39.232735, -121.037922], 13);
 
-           map.setView([latitude, longitude], 13);	
-
-           L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
-	     maxZoom: 18,
-	     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+	    L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+	        maxZoom: 18,
+	        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
 	   }).addTo(map);
-
-	   L.marker([latitude, longitude]).addTo(map)
-	      .bindPopup('<b>'+name+'</b><br /><a href="http://'+url+'">'+url+'</a><br />'+description+'<br />')
-              .openPopup();
 
 	   function onMapClick(e) {
 	     var marker = L.marker(e.latlng)
@@ -734,11 +728,50 @@
 	   }
 
 	   map.on('click', onMapClick);
+
+	   return map;
         }
 
+	function markClaim(map, claim) {
+            L.marker([claim.latitude, claim.longitude]).addTo(map)
+                 .bindPopup('<b>'+claim.name+'</b> ('+claim.size+' m<sup>2</sup>)<br />'+claim.description+'<br />')
+                 .openPopup();
+            return  [claim.latitude, claim.longitude];
+            console.log(claim.name + " (" + claim.latitude + ", "+ claim.longitude + ")");
+	}
+
+	function markClaims(map) {
+	    $.getJSON('/claims', function (data) {
+	        var coordinates = [39.232735, -121.037922];
+	        $.each(data, function() {
+                    coordinates = markClaim(map, this);
+	        });
+	        map.setView(coordinates, 13);	
+	    });
+	}
+	/*From http://stackoverflow.com/questions/1726630/javascript-formatting-number-with-exactly-two-decimals */
+
+	function precise_round(num,decimals){
+	    return Math.round(num*Math.pow(10,decimals))/Math.pow(10,decimals);
+	}
+
+	function updateScore() {
+	    var score = {};
+	    $.getJSON('/score', function (data) {
+	        score = data[0];
+	        $('#backer_count').html(score.backer_count);
+	        $('#btc_raised').html(precise_round(score.btc_raised, 3));
+	        $('.bar-success').css('width', "" + score.btc_raised / 20 * 100 + "%");
+	    });
+	    return score;
+	}
+
         $(document).ready(function() {
-            var map = L.map('where');
-	    setupMap(map, 39.232735, -121.037922, 'Miskatonic Alumni Association', 'Headquarters of the Miskatonic Alumni Association<br />Semper <i>scientia, aere perennius</i>', 'brightcanopy.com', true);
+	    updateScore();
+
+	    var map = setupMap();
+
+	    markClaims(map);
 
             $('#claim_form').ajaxForm({
 	        dataType: 'json',
@@ -750,7 +783,7 @@
 	                 button.attr('data-custom', claim_number);
                          var code = button.attr('data-code');
 	                 console.log("fire button: " + code + " with: " + button.attr('data-custom'));
-	                 setupMap(map, claim.latitude, claim.longitude, claim.name, claim.description);
+                         markClaim(map, claim);
 	                 $(document).trigger('coinbase_show_modal', code);
                          } 
                 });

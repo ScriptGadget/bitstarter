@@ -141,3 +141,41 @@ app.post('/claim', function(request, response) {
 	response.send(JSON.stringify([{error: "Error adding claim: " + error}]));
     }
 });
+
+
+app.get('/claims', function(request, response) {
+    global.db.Claim.findAll().success(function(claims) {
+	var claims_json = [];
+	claims.forEach(function(claim) {
+	    claims_json.push({
+		name: claim.name,
+		size: claim.size,
+		description: claim.description,
+		longitude: claim.longitude,
+		latitude: claim.latitude,
+	    });
+	});
+	response.send(JSON.stringify(claims_json));
+    }).error(function(error) {
+	console.log(error);
+	response.send(JSON.stringify([{error: "error retrieving claims: " + error}]));
+    });
+});
+
+
+app.get('/score', function(request, response) {
+    global.db.Order.findAll().success(function(orders) {
+	var btc = 0.0;
+	var count = 0;
+	orders.forEach(function(order) {
+	    if (order.amount > 0.005) { 
+		btc += order.amount;
+		count += 1;
+	    }
+	});
+	response.send(JSON.stringify([{btc_raised: btc, backer_count: count}]));
+    }).error(function (error) {
+	console.log(error);
+	response.send(JSON.stringify([{error: "error retrieving score" + error}]))
+    });
+});
