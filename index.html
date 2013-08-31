@@ -714,39 +714,43 @@
 
     <!-- Form Handlers -->
     <script>
-        function setupMap() {
-	   var map = L.map('where').setView([39.232735, -121.037922], 13);
-	
-	   L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+        function setupMap(map, latitude, longitude, name, description, url) {
+	  url = url || "";
+
+           map.setView([latitude, longitude], 13);	
+
+           L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+	     maxZoom: 18,
+	     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
 	   }).addTo(map);
 
-	    L.marker([39.232735, -121.037922]).addTo(map)
-		  .bindPopup('<img src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/images/noun_project_16390-whitestar.svg" height="25px" width="25px"><br /><b>Miskatonic Alumni Association</b><br /><a href="#">brightcanopy.com</a><br />Headquarters of the Miskatonic Alumni Association<br />Semper <i>scientia, aere perennius</i><br />')
-		  .openPopup();
+	   L.marker([latitude, longitude]).addTo(map)
+	      .bindPopup('<b>'+name+'</b><br /><a href="http://'+url+'">'+url+'</a><br />'+description+'<br />')
+              .openPopup();
 
-	     function onMapClick(e) {
-		  var marker = L.marker(e.latlng)
-		  marker.addTo(map).bindPopup('This location is ' + e.latlng).openPopup().on('click', function (e) {map.removeLayer(marker); });
-	     }
+	   function onMapClick(e) {
+	     var marker = L.marker(e.latlng)
+	       marker.addTo(map).bindPopup('This location is ' + e.latlng).openPopup().on('click', function (e) {map.removeLayer(marker); });
+	   }
 
-	     map.on('click', onMapClick);
+	   map.on('click', onMapClick);
         }
 
         $(document).ready(function() {
-
-	    setupMap();
+            var map = L.map('where');
+	    setupMap(map, 39.232735, -121.037922, 'Miskatonic Alumni Association', 'Headquarters of the Miskatonic Alumni Association<br />Semper <i>scientia, aere perennius</i>', 'brightcanopy.com', true);
 
             $('#claim_form').ajaxForm({
 	        dataType: 'json',
 	        success: function(data) {
-	                 var claim_number = "claim_" + data[0].id;
+	                 claim = data[0];
+	                 var claim_number = "claim_" + claim.id;
 	                 console.log(claim_number);
-	                 var button = $('#tier_'+data[0].size);
+	                 var button = $('#tier_'+claim.size);
 	                 button.attr('data-custom', claim_number);
                          var code = button.attr('data-code');
 	                 console.log("fire button: " + code + " with: " + button.attr('data-custom'));
+	                 setupMap(map, claim.latitude, claim.longitude, claim.name, claim.description);
 	                 $(document).trigger('coinbase_show_modal', code);
                          } 
                 });

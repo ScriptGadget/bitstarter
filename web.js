@@ -128,7 +128,10 @@ app.post('/claim', function(request, response) {
 		id: claim.id,
 		size: claim.size,
 		longitude: claim.longitude,
-		latitude: claim.latitude}]));
+		latitude: claim.latitude,
+	        name: claim.name,
+	        description: claim.description,
+	    }]));
 	}).error(function(error) {
 	    console.log(error);
 	    response.send(JSON.stringify([{error: "Error adding claim: " + error}]));
