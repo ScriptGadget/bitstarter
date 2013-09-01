@@ -11,13 +11,8 @@
     <!--[if lte IE 8]>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
     <![endif]-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
-    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
-    <script src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/js/jquery.form.min.js"></script>
-
     <style  type="text/css">
 
       /* Large desktop */
@@ -196,7 +191,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#"><img src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/images/noun_project_16390-whitestar.svg"/>Bright Canopy</a>
+          <a class="brand" href="#"><img src="http://s3-us-west-2.amazonaws.com/static.brightcanopy.com/images/noun_project_16390-whitestar.svg"/>Bright Canopy</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#top">Home</a></li>
@@ -233,10 +228,6 @@
 	  <div class='embed-container'>
 	    <iframe src='http://www.youtube.com/embed/uLZ-DjyjRL8?controls=0&showinfo=0&border=0&rel=0&theme=light' frameborder='0' allowfullscreen></iframe>
 	  </div>
-
-	  <!-- <iframe id="ytplayer" type="text/html" width="100%" height="230px" -->
-	  <!-- 	  src="https://www.youtube.com/embed/uLZ-DjyjRL8?controls=0&showinfo=0&border=0&rel=0&theme=light" -->
-	  <!-- 	  frameborder="0" allowfullscreen></iframe> -->
         </div>
 
         <!-- We define a new 'actions' div to contain statistics, order, and share buttons.-->
@@ -296,7 +287,7 @@
       <!-- http://placehold.it -->
       <div class="row-fluid section1">
         <div class="span5 offset1 asset">
-           <img src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/images/Bright_Canopy_Magic_Eightball_Mockup.png">
+           <img src="http://s3-us-west-2.amazonaws.com/static.brightcanopy.com/images/Bright_Canopy_Magic_Eightball_Mockup.png">
         </div>
         <div class="span5 copy">
 	  <p><a name="about"><strong>Pioneers Wanted</strong></a></p>
@@ -720,6 +711,11 @@
       </div>
     </div>
 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/js/jquery.form.min.js"></script>
+
     <!-- Coinbase Button Code -->
     <!-- Cubiculite -->
     <div id="tier_9" class="coinbase-button" data-code="a5a2b384ce99518b7e5c2da07527065c" data-button-style="none"></div>
@@ -789,6 +785,18 @@
 	    return score;
 	}
 
+	function confirmClaim(claim) {
+	    $('.section4').children()[0].innerHTML = "<h2>You Have Staked Your Claim</h2>" +
+                "<p>Pending payment confirmation, you have staked a claim to the this piece of the canopy.</p>" +
+	        "<ul>" +
+	        "<li> " + "<strong>name</strong>: " + claim.name + " </li>" +
+	        "<li> " + "<strong>size</strong>: " + claim.size + " m<sup>2</sup>" + " </li>" +
+	        "<li> " + "<strong>coordinates</strong>: " + claim.latitude + ", " + claim.longitude +  " </li>" +
+	        "<li> " + "<strong>description</strong>: " + claim.description +  " </li>" +
+	        "</ul>" +
+                "<p>You can also see your new marker on the map above.</p>";
+	}
+
         $(document).ready(function() {
 	    updateScore();
 
@@ -804,10 +812,9 @@
 	                 var button = $('#tier_'+claim.size);
 	                 button.attr('data-custom', claim_number);
                          var code = button.attr('data-code');
-                         markClaim(map, claim);
 	                 $(document).on('coinbase_payment_complete', function(event, code){
-	                     $('form').reset();
-	                     $('.section4').hide();
+                             markClaim(map, claim);
+	                     confirmClaim(claim);
 	                     $.getJSON('/refresh_orders', updateScore());
 	                 });
 	                 $(document).trigger('coinbase_show_modal', code);
