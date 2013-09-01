@@ -151,6 +151,22 @@
         width: 100%;
         height: 100%;
        }
+
+      .support_levels {
+      }
+
+      .support_levels dt {
+        font-size: +5;
+        padding-top: 15px;
+      }
+
+      .support_levels dd {
+        padding-left: 10px;
+      }
+
+      #description {
+        width: 75%;
+      }
     </style>
 
     <Script type="text/javascript">
@@ -325,15 +341,17 @@
 	</div>
 
         <div class="span5 copy copy-right">
-	  <h2>Support Levels</h2>
-	  <h3>0.09 BTC - Cubiculite</h3>
-	  <p>You can show your support and get first pick on a 3x3 patch of the canopy. That's enough to own the airspace above your cubicle! Along with a thank you email, you will also be listed on the Big Map and in the AR viewer for free through beta. When we launch you will still need to pay the membership fee to own canopy. (about 0.09 BTC / month).</p>
-	  <h3>0.25 BTC - Trailblazer</h3>
-	  <p>You will receive all of the above with a 5x5 patch of the canopy and a BRIGHT CANOPY sticker suitable for windows, notebooks, bumpers and the foreheads of loved ones.</p>
-	  <h3>1 BTC - Pioneer</h3>
-	  <p>For making a commitment to building a new world, you will receive all of the above with a 100m<sup>2</sup> patch of canopy plus a snazy t-shirt. You will also receive a free month of membership once we launch. Your account will also be marked with a Pioneer badge visible to other members as a way or recognizing your early support.</p>
-	  <h3>10.24 BTC - Canopy Baron</h3>
-	  <p>You will receive everything above with a Canopy Baron badge instead of a Pioneer badge and a 1024m<sup>2</sup> area of canopy of your choice anywhere in the world. You and your fellow Canopy Barons will have exclusive early access to sell canopy in the canopy market. You will have six months of free membership and VIP support.</p>
+	  <h2>Contribution Levels</h2>
+	  <dl class="support_levels">
+	  <dt>0.09 BTC - Cubiculite</dt>
+	  <dd>You can show your support and get first pick on a 3x3 patch of the canopy. That's enough to own the airspace above your cubicle! Along with a thank you email, you will also be listed on the Big Map and in the AR viewer for free through beta. When we launch you will still need to pay the membership fee to keep owning canopy. (about 0.09 BTC / month).</dd>
+	  <dt>0.25 BTC - Trailblazer</dt>
+	  <dd>You will receive all of the above with a 5x5 patch of the canopy and a BRIGHT CANOPY sticker suitable for windows, notebooks, bumpers and the foreheads of loved ones.</dd>
+	  <dt>1 BTC - Pioneer</dt>
+	  <dd>For making a commitment to building a new world, you will receive all of the above with a 100m<sup>2</sup> patch of canopy plus a snazy t-shirt. You will also receive a free month of membership once we launch. Your account will also be marked with a Pioneer badge visible to other members as a way or recognizing your early support.</dd>
+	  <dt>10.24 BTC - Canopy Baron</dt>
+	  <dd>You will receive everything above with a Canopy Baron badge instead of a Pioneer badge and a 1024m<sup>2</sup> area of canopy of your choice anywhere in the world. You and your fellow Canopy Barons will have exclusive early access to sell canopy in the canopy market. You will have six months of free membership and VIP support.</dd>
+	  </dl>
 	</div>
 	
       </div>
@@ -379,10 +397,10 @@
 		<label class="control-label" for="size">Square Meters</label>
 		<div class="controls">
 		  <select id="size" name="size" class="input-xlarge">
-		    <option value="9">9m<sup>2</sup> - Cubiculite</option>
-		    <option value="25">25m<sup>2</sup> - Trailblazer</option>
-		    <option value="100">100m<sup>2</sup> - Pioneer</option>
-		    <option value="1024">1024m<sup>2</sup> - Canopy Baron</option>
+		    <option value="9">9 sq meters - Cubiculite</option>
+		    <option value="25">25 sq meters - Trailblazer</option>
+		    <option value="100">100 sq meters - Pioneer</option>
+		    <option value="1024">1024 sq meters - Canopy Baron</option>
 		  </select>
 		  <p class="help-block">Early backer price is 0.01 bitcoins per square meter.</p>
 		</div>
@@ -400,7 +418,7 @@
 	      <div class="control-group">
 		<label class="control-label" for="description">Description</label>
 		<div class="controls">
-		  <textarea id="description" name="description">Public description for your claim.</textarea>
+		  <textarea id="description" name="description" placeholder="Public description for your claim."></textarea>
 		</div>
 	      </div>
 
@@ -789,6 +807,8 @@
                          markClaim(map, claim);
 	                 $(document).on('coinbase_payment_complete', function(event, code){
 	                     console.log("Payment completed for button "+code+ " and claim: " + claim.id + " (" + claim.name + ")");
+	                     $('form').reset();
+	                     $('.section4').hide();
 	                 });
 	                 $(document).trigger('coinbase_show_modal', code);
                          } 
