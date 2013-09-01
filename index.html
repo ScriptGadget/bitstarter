@@ -272,7 +272,7 @@
             </div>
           </div>
           <div class="span6 offset3 order">
-	    <a href="#claim"> <button id="jump_to_stake" class="btn btn-primary">Stake My Claim</button> </a>
+	    <a href="#stake_claim"> <button id="jump_to_stake" class="btn btn-primary">Stake My Claim</button> </a>
           </div>
           <div class="span10 offset1 social">
             <!-- Social buttons are not included in default Bootstrap. -->
@@ -359,11 +359,11 @@
 
       <div class="row-fluid section4">
         <div class="span10 offset1">
+	  <a name="stake_claim"></a>
 	  <form class="form-horizontal" id="claim_form" action="/claim" method="post">
 	    <fieldset>
-
 	      <!-- Form Name -->
-	      <h2 name="claim">I Want To Stake My Claim</h2>
+	      <h2>I Want To Stake My Claim</h2>
 
 	      <!-- Text input-->
 	      <div class="control-group">
@@ -806,9 +806,9 @@
                          var code = button.attr('data-code');
                          markClaim(map, claim);
 	                 $(document).on('coinbase_payment_complete', function(event, code){
-	                     console.log("Payment completed for button "+code+ " and claim: " + claim.id + " (" + claim.name + ")");
 	                     $('form').reset();
 	                     $('.section4').hide();
+	                     $.getJSON('/refresh_orders', updateScore());
 	                 });
 	                 $(document).trigger('coinbase_show_modal', code);
                          } 
