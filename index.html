@@ -249,7 +249,7 @@
               </div>
               <div class="span4">
                 <div class="linediv-r">
-                <h3>10</h3> <p>days left</p>
+                <h3 class="countdown">&nbsp;</h3> <p>days left</p>
                 </div>
               </div>
             </div>
@@ -797,7 +797,18 @@
                 "<p>You can also see your new marker on the map above.</p>";
 	}
 
+	/*Based on http://www.lsbu.ac.uk/javascript/cdownBR.html*/
+	function updateCountdown(deadline) {
+	    var now = new Date();
+            var then = new Date(deadline);
+            var gap = then.getTime() - now.getTime();
+            gap = Math.floor(gap / (1000 * 60 * 60 * 24));
+            $('.countdown')[0].innerHTML = "" + gap;
+	}
+
         $(document).ready(function() {
+	    updateCountdown("September 9, 2013 PDT");
+
 	    updateScore();
 
 	    var map = setupMap();
