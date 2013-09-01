@@ -3,7 +3,9 @@
 .env
 
 # npm packages
-node_modules
+# Made Heroku barf on proto.js
+# http://stackoverflow.com/questions/12416194/error-cannot-find-module-proto-on-heroku
+# node_modules
 
 # Mac
 .DS_Store

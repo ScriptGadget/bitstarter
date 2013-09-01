@@ -11,11 +11,13 @@
     <!--[if lte IE 8]>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
     <![endif]-->
-    <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fjquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    <script src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/js/jquery.form.min.js"></script>
+
     <style  type="text/css">
 
       /* Large desktop */
@@ -149,6 +151,22 @@
         width: 100%;
         height: 100%;
        }
+
+      .support_levels {
+      }
+
+      .support_levels dt {
+        font-size: +5;
+        padding-top: 15px;
+      }
+
+      .support_levels dd {
+        padding-left: 10px;
+      }
+
+      #description {
+        width: 75%;
+      }
     </style>
 
     <Script type="text/javascript">
@@ -230,17 +248,17 @@
                 different in horizontal and vertical layouts, illustrating
                 media queries. -->
                 <div class="linediv-l">
-                <h3>0</h3> <p>backers</p>
+                <h3><span id="backer_count">0</span></h3> <p>backers</p>
                 </div>
               </div>
               <div class="span4">
                 <div class="linediv-c">
-                  <h3>$0</h3> <p>of $100,000</p>
+                  <h3><span id="btc_raised">0</span> BTC</h3> <p>of 200 BTC</p>
                 </div>
               </div>
               <div class="span4">
                 <div class="linediv-r">
-                <h3>30</h3> <p>days left</p>
+                <h3>10</h3> <p>days left</p>
                 </div>
               </div>
             </div>
@@ -297,7 +315,7 @@
 
       <div class="row-fluid section2">
         <div class="span5 offset1 copy copy-right">
-	  <p>Own, buy and sell land.<ul><li class="quip">Buy Idaho and found a kingdom!</li></ul></p>
+	  <p>Own, buy and sell canopy.<ul><li class="quip">Buy Idaho and found a kingdom!</li></ul></p>
 	  <p>Create and sell virtual objects.<ul><li class="quip">Make things, open a store or a whole chain of stores. Sell franchises.</li></ul> </p>
 	  <p>Script machines to interact with others.<ul><li class="quip">Build a phantom amusement park in Antarctica.</li></ul></p>
 	  <p>Create creatures and pets. <ul><li class="quip">You know you always wanted a flying, phantom horse-duck.</li></ul></p>
@@ -323,10 +341,17 @@
 	</div>
 
         <div class="span5 copy copy-right">
-	  <h2>What You Can Do</h2>
-	  <p><strong>1.</strong> Buy land and stake your claim.</p>
-	  <p><strong>2.</strong> Give your parcel a name, a description and an optional web link.</p>
-	  <p><strong>3.</strong> <a href="mailto:contact@brightcanopy.com">Get involved</a> and help build a new world.</p>
+	  <h2>Contribution Levels</h2>
+	  <dl class="support_levels">
+	  <dt>0.09 BTC - Cubiculite</dt>
+	  <dd>You can show your support and get first pick on a 3x3 patch of the canopy. That's enough to own the airspace above your cubicle! Along with a thank you email, you will also be listed on the Big Map and in the AR viewer for free through beta. When we launch you will still need to pay the membership fee to keep owning canopy. (about 0.09 BTC / month).</dd>
+	  <dt>0.25 BTC - Trailblazer</dt>
+	  <dd>You will receive all of the above with a 5x5 patch of the canopy and a BRIGHT CANOPY sticker suitable for windows, notebooks, bumpers and the foreheads of loved ones.</dd>
+	  <dt>1 BTC - Pioneer</dt>
+	  <dd>For making a commitment to building a new world, you will receive all of the above with a 100m<sup>2</sup> patch of canopy plus a snazy t-shirt. You will also receive a free month of membership once we launch. Your account will also be marked with a Pioneer badge visible to other members as a way or recognizing your early support.</dd>
+	  <dt>10.24 BTC - Canopy Baron</dt>
+	  <dd>You will receive everything above with a Canopy Baron badge instead of a Pioneer badge and a 1024m<sup>2</sup> area of canopy of your choice anywhere in the world. You and your fellow Canopy Barons will have exclusive early access to sell canopy in the canopy market. You will have six months of free membership and VIP support.</dd>
+	  </dl>
 	</div>
 	
       </div>
@@ -334,7 +359,7 @@
 
       <div class="row-fluid section4">
         <div class="span10 offset1">
-	  <form class="form-horizontal" id="claim">
+	  <form class="form-horizontal" id="claim_form" action="/claim" method="post">
 	    <fieldset>
 
 	      <!-- Form Name -->
@@ -345,7 +370,7 @@
 		<label class="control-label" for="email">Email</label>
 		<div class="controls">
 		  <input id="email" name="email" type="text" placeholder="me@example.com" class="input-xlarge" required="">
-		  <p class="help-block">We will use your email to contact you about your land and to verify your ownership. We promise not to share or sell it.</p>
+		  <p class="help-block">We will use your email to contact you about your canopy claim and to verify your ownership. We promise not to share or sell your information.</p>
 		</div>
 	      </div>
 
@@ -372,10 +397,10 @@
 		<label class="control-label" for="size">Square Meters</label>
 		<div class="controls">
 		  <select id="size" name="size" class="input-xlarge">
-		    <option>9 - King of Your Cubicle</option>
-		    <option>25 - Trailblazer</option>
-		    <option>100 - Pioneer</option>
-		    <option>1000 - Land Baron</option>
+		    <option value="9">9 sq meters - Cubiculite</option>
+		    <option value="25">25 sq meters - Trailblazer</option>
+		    <option value="100">100 sq meters - Pioneer</option>
+		    <option value="1024">1024 sq meters - Canopy Baron</option>
 		  </select>
 		  <p class="help-block">Early backer price is 0.01 bitcoins per square meter.</p>
 		</div>
@@ -393,15 +418,15 @@
 	      <div class="control-group">
 		<label class="control-label" for="description">Description</label>
 		<div class="controls">
-		  <textarea id="description" name="description">Public description for your claim.</textarea>
+		  <textarea id="description" name="description" placeholder="Public description for your claim."></textarea>
 		</div>
 	      </div>
 
 	      <!-- Button -->
 	      <div class="control-group">
-		<label class="control-label" for="claim"></label>
+		<label class="control-label" for="claim_button"></label>
 		<div class="controls">
-		  <button id="claim" name="claim" class="btn btn-primary">Stake My Claim</button>
+		  <button id="claim_button" name="claim_button" class="btn btn-primary">Stake My Claim</button>
 		</div>
 	      </div>
 
@@ -409,52 +434,6 @@
 	  </form>
           <p><strong>For even larger claims, please <a href="mailto:contact@brightcanopy.com">contact us</a> directly.</strong></p>
 	  <p>All claims are subject to availability and are first-come, first serve. We reserve the right to edit names or descriptions for spelling, grammar and content. Please, no offensive names or descriptions.</p>
-	</div>
-      </div>
-
-      <div class="row-fluid section5">
-        <div class="span10 offset1">
-	  <h2>-- Or --</h2>
-	</div>
-      </div>
-
-
-      <div class="row-fluid section6">
-        <div class="span10 offset1">
-	  <form class="form-horizontal">
-	    <fieldset>
-
-	      <!-- Form Name -->
-	      <h2>I Just Want To Donate</h2>
-
-	      <!-- Text input-->
-	      <div class="control-group">
-		<label class="control-label" for="email">Email</label>
-		<div class="controls">
-		  <input id="email" name="email" type="text" placeholder="me@example.com" class="input-xlarge" required="">
-		  <p class="help-block">We will use your email address to contact you about the BRIGHT CANOPY project. We promise not sell or share it.</p>
-		</div>
-	      </div>
-
-	      <!-- Text input-->
-	      <div class="control-group">
-		<label class="control-label" for="amount">Amount</label>
-		<div class="controls">
-		  <input id="amount" name="amount" type="text" placeholder="0.05" class="input-xlarge" required="">
-		  <p class="help-block">Please specify your donation amount in bitcoins.</p>
-		</div>
-	      </div>
-
-	      <!-- Button -->
-	      <div class="control-group">
-		<label class="control-label" for="donate"></label>
-		<div class="controls">
-		  <button id="donate" name="donate" class="btn btn-primary">Donate With Bitcoin</button>
-		</div>
-	      </div>
-
-	    </fieldset>
-	  </form>
 	</div>
       </div>
 
@@ -489,42 +468,42 @@
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse"
                      data-parent="#accordion2" href="#collapseThree">
-                    What do I get when I buy land?
+                    What do I get when I buy a piece of canopy?
                   </a>
                 </div>
                 <div id="collapseThree" class="accordion-body collapse">
                   <div class="accordion-inner">
                     <p>
 		      This is a starter to get things rolling. It's a
-                      chance for pioneering folks and would-be land
-                      barrons to grab land early before anyone else
+                      chance for pioneering folks and would-be canopy
+                      barrons to grab canopy early before anyone else
                       hears about us. Your early support earns you an
                       advantage in price and choice. We will be strictly
                       first-come, first-serve.
 		    </p>
 		    <p>
-		      Each land purchase will be recorded and appear
+		      Each canopy purchase will be recorded and appear
                       on <a href="#map">The Big Map</a> as well as the
                       BRIGHT CANOPY channel in
                       the <a href="http://www.junaio.com/"
                       target="_new">Junaio Augmented Reality</a>
-                      browser. You will be able to walk around and see
+                      browser (live in a few days). You will be able to walk around and see
                       your marker and those of others nearby floating
-                      in space. You will be able to name your land and
+                      in space. You will be able to name your canopy and
                       set the description as well as an optional web
                       link.
 		    </p>
 		    <p>
-		      Once we rollout user created content, land
+		      Once we rollout user created content, canopy
                       owners will be able to set permissions on who
                       can create content (3D objects, flying monkeys,
                       rotating billboards with spotlights and blink
-                      tags etc..) on your land.
+                      tags etc..) on your canopy.
 		    </p>
 		    <p>
 		      Once we rollout the
-		      land market, land owners will be able to buy and
-		      sell land.
+		      canopy market, canopy owners will be able to buy and
+		      sell canopy.
 		    </p>
                   </div>
                 </div>
@@ -577,7 +556,7 @@
 		      What we Know: We know we can do Augmented
 		      Reality with 3D, scriptable objects.  We know we
 		      can do user created content.  We know we can
-		      build land auctions, vending machines and
+		      build canopy auctions, vending machines and
 		      virtual stores based on bitcoin. It's just work
 		      and time and money.
 		    </p>
@@ -585,7 +564,7 @@
 		      What We Don't Know: We don't know if you will be
 		      excited enough about this idea to get out there
 		      and invite your friends to help build a new
-		      world. If you are, we can do anything.
+		      world. If you do that, we can do anything.
 		    </p>
 
                   </div>
@@ -741,30 +720,101 @@
       </div>
     </div>
 
-    <!-- The "Where Are We" map -->
-    <script>
-		var map = L.map('where').setView([39.232735, -121.037922], 13);
+    <!-- Coinbase Button Code -->
+    <!-- Cubiculite -->
+    <div id="tier_9" class="coinbase-button" data-code="a5a2b384ce99518b7e5c2da07527065c" data-button-style="none"></div>
 
-		L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
-			maxZoom: 18,
-			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
-		}).addTo(map);
+    <!-- Trailblazer -->
+    <div id="tier_25" class="coinbase-button" data-code="d302094e80ba316823aefeee82409c4b" data-button-style="none"></div>
 
-		L.marker([39.232735, -121.037922]).addTo(map)
-		  .bindPopup('<img src="https://s3-us-west-2.amazonaws.com/static.brightcanopy.com/images/noun_project_16390-whitestar.svg" height="25px" width="25px"><br /><b>Miskatonic Alumni Association</b><br /><a href="#">brightcanopy.com</a><br />Headquarters of the Miskatonic Alumni Association<br />Semper <i>scientia, aere perennius</i><br />')
-		  .openPopup();
+    <!-- Pioneer --> 
+    <div id="tier_100" class="coinbase-button" data-code="eabf135a107c166ebc52ae42b87ca034" data-button-style="none"></div>
 
-		function onMapClick(e) {
-		  var marker = L.marker(e.latlng)
-		  marker.addTo(map).bindPopup('This location is ' + e.latlng).openPopup().on('click', function (e) {map.removeLayer(marker); });
-		}
+    <!-- Canopy Baron -->
+    <div id="tier_1024" class="coinbase-button" data-code="5f64ce5258bc3b16a9c650d2693e73b4" data-button-style="none"></div>
 
-		map.on('click', onMapClick);
-
-    </script>
+    <script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
 
     <!-- Form Handlers -->
     <script>
+        function setupMap() {
+            var map = L.map('where').setView([39.232735, -121.037922], 13);
+
+	    L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+	        maxZoom: 18,
+	        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+	   }).addTo(map);
+
+	   function onMapClick(e) {
+	     var marker = L.marker(e.latlng)
+	       marker.addTo(map).bindPopup('This location is ' + e.latlng).openPopup().on('click', function (e) {map.removeLayer(marker); });
+	   }
+
+	   map.on('click', onMapClick);
+
+	   return map;
+        }
+
+	function markClaim(map, claim) {
+            L.marker([claim.latitude, claim.longitude]).addTo(map)
+                 .bindPopup('<b>'+claim.name+'</b> ('+claim.size+' m<sup>2</sup>)<br />'+claim.description+'<br />')
+                 .openPopup();
+            return  [claim.latitude, claim.longitude];
+            console.log(claim.name + " (" + claim.latitude + ", "+ claim.longitude + ")");
+	}
+
+	function markClaims(map) {
+	    $.getJSON('/claims', function (data) {
+	        var coordinates = [39.232735, -121.037922];
+	        $.each(data, function() {
+                    coordinates = markClaim(map, this);
+	        });
+	        map.setView(coordinates, 13);	
+	    });
+	}
+	/*From http://stackoverflow.com/questions/1726630/javascript-formatting-number-with-exactly-two-decimals */
+
+	function precise_round(num,decimals){
+	    return Math.round(num*Math.pow(10,decimals))/Math.pow(10,decimals);
+	}
+
+	function updateScore() {
+	    var score = {};
+	    $.getJSON('/score', function (data) {
+	        score = data[0];
+	        $('#backer_count').html(score.backer_count);
+	        $('#btc_raised').html(precise_round(score.btc_raised, 3));
+	        $('.bar-success').css('width', "" + score.btc_raised / 200 * 100 + "%");
+	    });
+	    return score;
+	}
+
+        $(document).ready(function() {
+	    updateScore();
+
+	    var map = setupMap();
+
+	    markClaims(map);
+
+            $('#claim_form').ajaxForm({
+	        dataType: 'json',
+	        success: function(data) {
+	                 claim = data[0];
+	                 var claim_number = "claim_" + claim.id;
+	                 var button = $('#tier_'+claim.size);
+	                 button.attr('data-custom', claim_number);
+                         var code = button.attr('data-code');
+                         markClaim(map, claim);
+	                 $(document).on('coinbase_payment_complete', function(event, code){
+	                     console.log("Payment completed for button "+code+ " and claim: " + claim.id + " (" + claim.name + ")");
+	                     $('form').reset();
+	                     $('.section4').hide();
+	                 });
+	                 $(document).trigger('coinbase_show_modal', code);
+                         } 
+                });
+
+        });
     </script>
 
     <script>
